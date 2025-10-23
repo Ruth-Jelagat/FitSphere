@@ -1,8 +1,7 @@
 import React from "react";
 import "../App.css";
 
-function MealCard({ meal }) {
-  // Add safety check to prevent undefined errors
+function MealCard({ meal, onSelect }) {
   if (!meal) {
     return (
       <div className="card">
@@ -15,19 +14,19 @@ function MealCard({ meal }) {
   }
 
   const { 
-    name = "Unknown Meal", 
-    calories = 0, 
-    image = "https://via.placeholder.com/300x200?text=No+Image",
-    goal = "maintain"
+    strMeal = meal.name || "Unknown Meal", 
+    strMealThumb = meal.image || "https://via.placeholder.com/300x200?text=No+Image",
+    strCategory = meal.goal || "maintain"
+    // Removed unused idMeal variable
   } = meal;
 
   return (
-    <div className="card">
-      <img src={image} alt={name} />
+    <div className="card meal-card" onClick={onSelect}>
+      <img src={strMealThumb} alt={strMeal} />
       <div className="card-content">
-        <h3>{name}</h3>
-        <p><strong>Calories:</strong> {calories}</p>
-        <p><strong>Goal:</strong> {goal === "lose" ? "Weight Loss" : goal === "gain" ? "Muscle Gain" : "Maintenance"}</p>
+        <h3>{strMeal}</h3>
+        <p><strong>Category:</strong> {strCategory}</p>
+        <button className="view-recipe-btn">View Recipe & Ingredients</button>
       </div>
     </div>
   );
