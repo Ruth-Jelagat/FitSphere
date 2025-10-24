@@ -15,7 +15,32 @@ function MealDetails({ meal, onClose, onAddToPlan }) {
     return ingredients;
   };
 
+  // Estimate calories for the meal details modal
+  const getCalorieEstimate = () => {
+    const category = meal.strCategory || "";
+    const calorieEstimates = {
+      'Chicken': '350-450',
+      'Beef': '450-550', 
+      'Pork': '400-500',
+      'Seafood': '300-400',
+      'Vegetarian': '250-350',
+      'Breakfast': '300-400',
+      'Dessert': '400-600',
+      'Pasta': '500-700',
+      'Vegetable': '150-250',
+      'Lamb': '380-480',
+      'Goat': '350-450',
+      'Vegan': '200-300',
+      'Side': '150-250',
+      'Starter': '200-300',
+      'Miscellaneous': '350-450'
+    };
+    
+    return calorieEstimates[category] || '350-450';
+  };
+
   const ingredients = getIngredients();
+  const calorieEstimate = getCalorieEstimate();
 
   return (
     <div className="meal-details-overlay">
@@ -29,6 +54,7 @@ function MealDetails({ meal, onClose, onAddToPlan }) {
               <h2>{meal.strMeal}</h2>
               <p><strong>Category:</strong> {meal.strCategory}</p>
               <p><strong>Cuisine:</strong> {meal.strArea}</p>
+              <p><strong>Estimated Calories:</strong> ~{calorieEstimate}</p>
               {meal.strTags && <p><strong>Tags:</strong> {meal.strTags}</p>}
               <button 
                 className="add-to-plan-btn"

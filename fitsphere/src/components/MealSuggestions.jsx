@@ -51,7 +51,7 @@ function MealSuggestions({ userGoal }) {
 
   return (
     <div className="suggestions-section">
-      <h3>💡 Suggested Meals for {userGoal === 'lose' ? 'Weight Loss' : userGoal === 'gain' ? 'Muscle Gain' : 'Maintenance'}</h3>
+      <h3>Suggested Meals for {userGoal === 'lose' ? 'Weight Loss' : userGoal === 'gain' ? 'Muscle Gain' : 'Maintenance'}</h3>
       <div className="grid">
         {suggestions.map((meal, index) => (
           <div key={index} className="card suggestion-card">
